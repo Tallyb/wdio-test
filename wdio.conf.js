@@ -44,7 +44,10 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         //
-        browserName: 'chromedriver'
+        browserName: 'chrome',
+        chromeOptions: {
+            args: ['headless']
+        }
     }],
     //
     // ===================
@@ -111,7 +114,11 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'], //
+    services: ['chromedriver'],
+    port: 9515,
+    path: '/',
+
+    //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -127,7 +134,7 @@ exports.config = {
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/step-definitions'], // <string[]> (file/dir) require files before executing features
+        require: ['./features/steps.js'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
