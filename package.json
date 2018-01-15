@@ -7,12 +7,11 @@
     "test": "$(npm bin)/wdio"
   },
   "author": "",
-  "license": "ISC",
   "devDependencies": {
     "eslint": "^4.11.0",
     "wdio-chromedriver-service": "^0.1.1",
     "wdio-cucumber-framework": "^1.0.2",
     "wdio-spec-reporter": "^0.1.2",
-    "webdriverio": "^4.9.9"
+    "webdriverio": "^4.10.1"
   }
 }
