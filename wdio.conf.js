@@ -46,7 +46,9 @@ exports.config = {
         //
         browserName: 'chrome',
         chromeOptions: {
-            args: ['headless']
+            args: [
+            //    'headless'
+            ]
         }
     }],
     //
@@ -202,7 +204,8 @@ exports.config = {
      */
     beforeScenario: function (scenario) {
         browser.url('/');
-        browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
+        // Uncomment this line
+        //browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
     },
     /**
      * Runs before a Cucumber step
