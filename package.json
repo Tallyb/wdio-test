@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "$(npm bin)/wdio"
+    "test": "$(npm bin)/wdio",
+    "run:mobile": "$(npm bin)/wdio ./to.conf.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "eslint": "^4.11.0",
     "wdio-chromedriver-service": "^0.1.1",
     "wdio-cucumber-framework": "^1.0.2",
     "wdio-spec-reporter": "^0.1.2",
-    "webdriverio": "^4.9.9"
+    "webdriverio": "^4.10.1",
+    "chromedriver": "^2.34.1"
   }
 }
