@@ -1,3 +1,5 @@
+require('dotenv').config({path: './config.env'});
+
 exports.config = {
 
     //
@@ -38,7 +40,7 @@ exports.config = {
     maxInstances: 1,
     connectionRetryCount: 1,
     capabilities: [{
-        testobject_api_key: '***',
+        testobject_api_key: process.env.TO_KEY,
         autoWebview: true,
         // autoAcceptAlerts: true,
         // locationServicesEnabled: true,
@@ -80,14 +82,14 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://webdriver.io',
+    //baseUrl: 'http://webdriver.io',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 90000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
-    connectionRetryTimeout: 90000,
+    connectionRetryTimeout: 120000,
     //
     // Default request retries count
     //
@@ -196,8 +198,6 @@ exports.config = {
      * @param {Object} scenario scenario details
      */
     beforeScenario: function (scenario) {
-        browser.url('/');
-        browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
     },
     /**
      * Runs before a Cucumber step
