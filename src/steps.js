@@ -6,6 +6,9 @@ defineSupportCode(function ({
     Given
 }) {
     Given(/^Do Something$/, function () {
+        let selector = '//a[.="API"]';
+        browser.waitForEnabled(selector);
+        browser.click(selector);
         browser.waitForEnabled('//article/a[.="Improve this doc"]');
     });
 

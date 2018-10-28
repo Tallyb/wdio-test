@@ -10,7 +10,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './features/**/*.feature'
+        './src/features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -134,7 +134,7 @@ exports.config = {
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./features/steps.js'], // <string[]> (file/dir) require files before executing features
+        require: ['./src/steps.js'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
@@ -202,7 +202,7 @@ exports.config = {
      */
     beforeScenario: function (scenario) {
         browser.url('/');
-        browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
+//        browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
     },
     /**
      * Runs before a Cucumber step
@@ -226,8 +226,14 @@ exports.config = {
      * Runs after a Cucumber feature
      * @param {Object} feature feature details
      */
-    // afterFeature: function (feature) {
-    // },
+    afterFeature: async function (feature) {
+        console.log('IN AFTER SCENARIO');
+        [1,2,3,4].forEach (async function (i) {
+            await setTimeout(() => {
+                console.log('TIMEOUT', i)
+            }, i*100);
+        });
+    },
 
     /**
      * Runs after a WebdriverIO command gets executed
