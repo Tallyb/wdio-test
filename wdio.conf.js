@@ -1,5 +1,5 @@
 const utils = require('./src/utils');
-exports.config = {
+let config = {
 
     //
     // ==================
@@ -196,7 +196,7 @@ exports.config = {
      * @param {Object} feature feature details
      */
     beforeFeature: function (feature) {
-        browser.url('/');
+        browser.windowHandleSize( {width: 375, height: 800});
         console.log('IN BEFORE FEATURE');
         return utils.runDelays();
 
@@ -268,3 +268,5 @@ exports.config = {
     // onComplete: function(exitCode, config, capabilities) {
     // }
 }
+
+exports.config = config;
