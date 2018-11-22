@@ -1,3 +1,4 @@
+const utils = require('./src/utils');
 exports.config = {
 
     //
@@ -194,16 +195,19 @@ exports.config = {
      * Runs before a Cucumber feature
      * @param {Object} feature feature details
      */
-    // beforeFeature: function (feature) {
-    // },
+    beforeFeature: function (feature) {
+        browser.url('/');
+        console.log('IN BEFORE FEATURE');
+        return utils.runDelays();
+
+    },
     /**
      * Runs before a Cucumber scenario
      * @param {Object} scenario scenario details
      */
-    beforeScenario: function (scenario) {
-        browser.url('/');
-//        browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
-    },
+    // beforeScenario: function (scenario) {
+    //     browser.url('/');
+    // },
     /**
      * Runs before a Cucumber step
      * @param {Object} step step details
@@ -226,13 +230,7 @@ exports.config = {
      * Runs after a Cucumber feature
      * @param {Object} feature feature details
      */
-    afterFeature: async function (feature) {
-        console.log('IN AFTER SCENARIO');
-        [1,2,3,4].forEach (async function (i) {
-            await setTimeout(() => {
-                console.log('TIMEOUT', i)
-            }, i*100);
-        });
+    afterFeature: async function (feature) {        
     },
 
     /**

@@ -1,5 +1,5 @@
-Feature: This is for testing the error
+Feature: This is a test feature
 
 Scenario: Run something
 
-Given Do Something
+Given Log Something

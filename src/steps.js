@@ -5,6 +5,10 @@ var {
 defineSupportCode(function ({
     Given
 }) {
+    Given(/^Log Something$/, function () {
+        console.log('Logging something')
+    });
+    
     Given(/^Do Something$/, function () {
         let selector = '//a[.="API"]';
         browser.waitForEnabled(selector);
