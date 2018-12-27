@@ -207,17 +207,9 @@ let config = {
      * Runs before a Cucumber scenario
      * @param {Object} scenario scenario details
      */
-<<<<<<< HEAD
-    beforeScenario: function (scenario) {
-        browser.url('/');
-        // Uncomment this line
-        //browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
-    },
-=======
     // beforeScenario: function (scenario) {
     //     browser.url('/');
     // },
->>>>>>> async-hooks
     /**
      * Runs before a Cucumber step
      * @param {Object} step step details
