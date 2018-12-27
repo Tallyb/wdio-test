@@ -1,5 +1,6 @@
-const utils = require('./src/utils');
-let config = {
+require('dotenv').config({path: './config.env'});
+
+exports.config = {
 
     //
     // ==================
@@ -11,7 +12,7 @@ let config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './src/features/**/*.feature'
+        './features/**/mobile.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -32,25 +33,23 @@ let config = {
     // files and you set maxInstances to 10, all spec files will get tested at the same time
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
-    //
-    maxInstances: 10,
-    //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
-    // https://docs.saucelabs.com/reference/platforms-configurator
-    //
+    protocol: 'https',
+    host: 'eu1.appium.testobject.com',
+    port: 443,
+    path: '/wd/hub',
+    maxInstances: 1,
+    connectionRetryCount: 1,
     capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 1,
-        //
-        browserName: 'chrome',
-        chromeOptions: {
-            args: [
-            //    'headless'
-            ]
-        }
+        testobject_api_key: process.env.TO_KEY,
+        autoWebview: true,
+        // autoAcceptAlerts: true,
+        // locationServicesEnabled: true,
+        // locationServicesAuthorized: true,
+        platformName: 'iOS',
+        phoneOnly: true,
+        tabletOnly: false,
+        privateDevicesOnly: false,
+        newCommandTimeout: 120000
     }],
     //
     // ===================
@@ -83,17 +82,16 @@ let config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://webdriver.io',
+    //baseUrl: 'http://webdriver.io',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 90000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
-    connectionRetryTimeout: 90000,
+    connectionRetryTimeout: 120000,
     //
     // Default request retries count
-    connectionRetryCount: 3,
     //
     // Initialize the browser instance with a WebdriverIO plugin. The object should have the
     // plugin name as key and the desired plugin options as properties. Make sure you have
@@ -117,10 +115,6 @@ let config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
-    port: 9515,
-    path: '/',
-
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -137,7 +131,7 @@ let config = {
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./src/steps.js'], // <string[]> (file/dir) require files before executing features
+        require: ['./features/steps.js'], // <string[]> (file/dir) require files before executing features
         backtrace: false, // <boolean> show full backtrace for errors
         compiler: [], // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false, // <boolean> invoke formatters without executing steps
@@ -197,27 +191,14 @@ let config = {
      * Runs before a Cucumber feature
      * @param {Object} feature feature details
      */
-    beforeFeature: function (feature) {
-        browser.windowHandleSize( {width: 375, height: 800});
-        console.log('IN BEFORE FEATURE');
-        return utils.runDelays();
-
-    },
+    // beforeFeature: function (feature) {
+    // },
     /**
      * Runs before a Cucumber scenario
      * @param {Object} scenario scenario details
      */
-<<<<<<< HEAD
     beforeScenario: function (scenario) {
-        browser.url('/');
-        // Uncomment this line
-        //browser.$('body').waitForExist(30000); //--> lastResult showed this selector and the condition was true. 
     },
-=======
-    // beforeScenario: function (scenario) {
-    //     browser.url('/');
-    // },
->>>>>>> async-hooks
     /**
      * Runs before a Cucumber step
      * @param {Object} step step details
@@ -240,8 +221,8 @@ let config = {
      * Runs after a Cucumber feature
      * @param {Object} feature feature details
      */
-    afterFeature: async function (feature) {        
-    },
+    // afterFeature: function (feature) {
+    // },
 
     /**
      * Runs after a WebdriverIO command gets executed
@@ -278,5 +259,3 @@ let config = {
     // onComplete: function(exitCode, config, capabilities) {
     // }
 }
-
-exports.config = config;
