@@ -7,19 +7,6 @@
     "test": "$(npm bin)/wdio",
     "run:mobile": "$(npm bin)/wdio ./to.conf.js"
   },
-<<<<<<< HEAD
-  "author": "me",
-  "devDependencies": {
-
-  },
-  "dependencies": {
-    "chromedriver": "^2.34.1",
-    "eslint": "^4.11.0",
-    "wdio-chromedriver-service": "^0.1.1",
-    "wdio-cucumber-framework": "^1.0.2",
-    "wdio-spec-reporter": "^0.1.2",
-    "webdriverio": "^4.10.1"  }
-=======
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -31,5 +18,4 @@
     "wdio-spec-reporter": "^0.1.5",
     "webdriverio": "^4.14.0"
   }
->>>>>>> async-hooks
 }
